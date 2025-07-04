@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CycleBae - Sync with your cycle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .bg-main-gradient {
+            background-image: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+        .btn-gradient {
+             background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+        }
+        /* Custom animation classes */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+</head>
+<body class="bg-main-gradient text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/30 backdrop-blur-xl fixed top-4 left-4 right-4 z-50 rounded-xl shadow-lg">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-extrabold">
+                    <a href="#" class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">CycleBae</a>
+                </div>
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-pink-600 font-medium transition duration-300">Home</a>
+                    <a href="privacy.html" class="text-gray-700 hover:text-pink-600 font-medium transition duration-300">Privacy</a>
+                    <a href="terms.html" class="text-gray-700 hover:text-pink-600 font-medium transition duration-300">Terms</a>
+                    <a href="#contact" class="text-gray-700 hover:text-pink-600 font-medium transition duration-300">Contact</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/50 rounded-b-xl">
+            <a href="#" class="block py-3 px-6 text-gray-700 hover:bg-pink-100/50 hover:text-pink-600">Home</a>
+            <a href="privacy.html" class="block py-3 px-6 text-gray-700 hover:bg-pink-100/50 hover:text-pink-600">Privacy Policy</a>
+            <a href="terms.html" class="block py-3 px-6 text-gray-700 hover:bg-pink-100/50 hover:text-pink-600">Terms of Service</a>
+            <a href="#contact" class="block py-3 px-6 text-gray-700 hover:bg-pink-100/50 hover:text-pink-600">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-32 pb-16 overflow-hidden">
+        <div class="container mx-auto px-6 text-center">
+            <div class="bg-white/30 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl max-w-4xl mx-auto reveal">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
+                    Vibe with your cycle.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-8">
+                    Unlock your best self. CycleBae gives you the tea on your hormones so you can slay your nutrition, fitness, and skincare game every single day.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#" class="w-full sm:w-auto btn-gradient text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out flex items-center justify-center space-x-2">
+                        <i data-lucide="apple"></i>
+                        <span>Download for iOS</span>
+                    </a>
+                    <a href="#" class="w-full sm:w-auto bg-gray-900 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out flex items-center justify-center space-x-2">
+                        <i data-lucide="play-circle"></i>
+                        <span>Get on Android</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Floating decorative elements -->
+            <div class="absolute top-1/4 left-10 w-16 h-16 bg-pink-300/50 rounded-full float-anim" style="animation-delay: 0s;"></div>
+            <div class="absolute bottom-1/4 right-10 w-24 h-24 bg-purple-300/50 rounded-full float-anim" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-1/2 right-1/4 w-8 h-8 bg-yellow-300/50 rounded-full float-anim" style="animation-delay: 1s;"></div>
+        </div>
+    </section>
+    
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16">
+            <div class="max-w-2xl mx-auto bg-white/30 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl reveal">
+                <h2 class="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 mb-4">Got questions?</h2>
+                <p class="text-center text-gray-700 mb-8">Slide into our DMs (or, you know, our inbox). We'd love to hear from you!</p>
+                <div class="text-center">
+                    <a href="mailto:hello@cyclebae.app" class="text-xl font-semibold text-gray-800 hover:text-pink-600 transition">hello@cyclebae.app</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 pb-8">
+        <div class="container mx-auto px-6 text-center text-gray-700">
+            <p>&copy; 2024 CycleBae. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Reveal animations on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger on load
+    </script>
+</body>
+</html>
