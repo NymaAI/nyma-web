@@ -1,74 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Terms of Service - CycleBae</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .bg-main-gradient {
+        background-image: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      }
+
+      /* Particles */
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .particle:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .particle:nth-child(2) {
+        animation-delay: 1s;
+      }
+      .particle:nth-child(3) {
+        animation-delay: 2s;
+      }
+      .particle:nth-child(4) {
+        animation-delay: 3s;
+      }
+      .particle:nth-child(5) {
+        animation-delay: 4s;
+      }
+      .particle:nth-child(6) {
+        animation-delay: 5s;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
         }
-        .bg-main-gradient {
-            background-image: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+        33% {
+          transform: translateY(-20px) rotate(120deg);
         }
+        66% {
+          transform: translateY(-10px) rotate(240deg);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .float-anim {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* Floating hearts */
+      .heart {
+        position: absolute;
+        font-size: 20px;
+        color: #ff6b9d;
+        animation: floatingHearts 8s linear infinite;
+        opacity: 0;
+      }
+
+      @keyframes floatingHearts {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) scale(1);
+          opacity: 0;
+        }
+      }
     </style>
-</head>
-<body class="bg-main-gradient text-gray-800">
+  </head>
+  <body class="bg-main-gradient text-gray-800 overflow-x-hidden">
+    <!-- Particles Container -->
+    <div id="particles-container" class="fixed inset-0 pointer-events-none z-0">
+      <div
+        class="particle w-4 h-4 bg-pink-300 opacity-60"
+        style="left: 10%; top: 20%"
+      ></div>
+      <div
+        class="particle w-6 h-6 bg-purple-300 opacity-50"
+        style="left: 80%; top: 30%"
+      ></div>
+      <div
+        class="particle w-3 h-3 bg-yellow-300 opacity-70"
+        style="left: 60%; top: 60%"
+      ></div>
+      <div
+        class="particle w-5 h-5 bg-blue-300 opacity-40"
+        style="left: 20%; top: 80%"
+      ></div>
+      <div
+        class="particle w-4 h-4 bg-green-300 opacity-60"
+        style="left: 90%; top: 70%"
+      ></div>
+      <div
+        class="particle w-3 h-3 bg-red-300 opacity-50"
+        style="left: 30%; top: 40%"
+      ></div>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div
+      id="hearts-container"
+      class="fixed inset-0 pointer-events-none z-0"
+    ></div>
 
     <!-- Header -->
-    <header class="bg-white/30 backdrop-blur-xl sticky top-4 mx-4 z-50 rounded-xl shadow-lg">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex items-center justify-between">
-                <div class="text-2xl font-extrabold">
-                    <a href="index.html" class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">CycleBae</a>
-                </div>
-                <nav class="hidden md:flex items-center space-x-6">
-                    <a href="index.html" class="text-gray-700 hover:text-pink-600 font-medium transition duration-300">Home</a>
-                    <a href="privacy.html" class="text-gray-700 hover:text-pink-600 font-medium transition duration-300">Privacy</a>
-                    <a href="terms.html" class="text-pink-600 font-bold">Terms</a>
-                    <a href="index.html#contact" class="text-gray-700 hover:text-pink-600 font-medium transition duration-300">Contact</a>
-                </nav>
-                <a href="index.html" class="md:hidden text-gray-700 focus:outline-none">
-                    <i data-lucide="arrow-left"></i>
-                </a>
-            </div>
+    <header
+      class="bg-white/30 backdrop-blur-xl fixed top-4 left-4 right-4 z-50 rounded-xl shadow-lg"
+    >
+      <div class="container mx-auto px-6 py-3">
+        <div class="flex items-center justify-between">
+          <div class="text-2xl font-extrabold">
+            <a
+              href="index.html"
+              class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600"
+              >CycleBae</a
+            >
+          </div>
+          <nav class="hidden md:flex items-center space-x-6">
+            <a
+              href="index.html"
+              class="text-gray-700 hover:text-pink-600 font-medium transition duration-300"
+              >Home</a
+            >
+            <a
+              href="privacy.html"
+              class="text-gray-700 hover:text-pink-600 font-medium transition duration-300"
+              >Privacy</a
+            >
+            <a href="terms.html" class="text-pink-600 font-bold">Terms</a>
+            <a
+              href="index.html#contact"
+              class="text-gray-700 hover:text-pink-600 font-medium transition duration-300"
+              >Contact</a
+            >
+          </nav>
+          <a
+            href="index.html"
+            class="md:hidden text-gray-700 focus:outline-none"
+          >
+            <i data-lucide="arrow-left"></i>
+          </a>
         </div>
+      </div>
     </header>
 
     <!-- Main Content Area -->
-    <main class="container mx-auto px-6 py-12">
-        <div class="max-w-4xl mx-auto bg-white/50 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl mt-8">
-            <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Terms of Service</h1>
-            <div class="prose max-w-none text-gray-700">
-                <p><strong>Last Updated: July 04, 2025</strong></p>
-                <p>Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the CycleBae mobile application (the "Service") operated by CycleBae ("us", "we", or "our").</p>
-                <p>Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.</p>
-                
-                <h3>1. Accounts</h3>
-                <p>When you create an account with us, you must provide us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.</p>
-                
-                <h3>2. Disclaimer</h3>
-                <p>The Service is for informational purposes only and is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on the Service.</p>
-                
-                <h3>3. Intellectual Property</h3>
-                <p>The Service and its original content, features and functionality are and will remain the exclusive property of CycleBae and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries.</p>
-                
-                <p class="italic">[...Full terms of service details would continue here...]</p>
-            </div>
+    <main class="container mx-auto px-6 py-12 pt-32 relative z-10">
+      <div
+        class="max-w-4xl mx-auto bg-white/30 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl mt-8 reveal"
+      >
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-6 fade-in-up"
+          >Terms & Conditions</h1
+        >
+        <div class="prose max-w-none text-gray-700 leading-relaxed">
+          <p class="mb-6"
+            ><strong>Effective Date: 10 July 2025</strong><br />
+            <strong>Last Updated: 10 July 2025</strong></p
+          >
+
+          <p class="mb-6"
+            >Welcome to Cyclebae, a personal wellness platform focused on
+            hormonal health, menstrual tracking, and lifestyle insights. By
+            using our mobile application and related services (collectively, the
+            "App" or "Services"), you agree to these Terms & Conditions
+            ("Terms").</p
+          >
+
+          <p class="mb-8">Please read them carefully.</p>
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Eligibility</h2>
+          <p class="mb-4"
+            >You must be at least 18 years old to use the App. If you are under
+            18, your use must be supervised by a parent or legal guardian, who
+            agrees to these Terms on your behalf.</p
+          >
+          <p class="mb-6"
+            >By using the App, you represent that you meet the eligibility
+            criteria and have not been previously suspended or banned from using
+            our Services.</p
+          >
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >2. Medical Disclaimer</h2
+          >
+          <p class="mb-4"
+            >Cyclebae is not a medical service provider. We provide tools and
+            educational content to help you track your wellness, menstrual
+            cycle, and lifestyle inputs — but the App does not offer medical
+            advice, diagnosis, or treatment.</p
+          >
+          <p class="mb-6"
+            >Always consult your doctor or healthcare provider for medical
+            decisions.</p
+          >
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >3. User Responsibilities</h2
+          >
+          <p class="mb-2">You agree to:</p>
+          <ul class="mb-4 ml-6 list-disc">
+            <li>Provide accurate and complete information while registering</li>
+            <li>Use the App only for personal and lawful purposes</li>
+            <li
+              >Not use the App to post or transmit objectionable or harmful
+              content</li
+            >
+            <li>Maintain confidentiality of your login credentials</li>
+          </ul>
+          <p class="mb-6"
+            >We reserve the right to suspend or remove accounts that violate
+            these rules.</p
+          >
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >4. User Content & License</h2
+          >
+          <p class="mb-4"
+            >You retain ownership of the content you submit. However, by
+            submitting any data (e.g., symptoms, notes, preferences), you grant
+            us a non-exclusive, royalty-free license to use it (in de-identified
+            form) for:</p
+          >
+          <ul class="mb-4 ml-6 list-disc">
+            <li>Providing personalised insights</li>
+            <li>Improving our services</li>
+            <li>Research and analytics</li>
+          </ul>
+          <p class="mb-6"
+            >We will never sell your personal data or disclose your identity
+            without your explicit consent, as outlined in our
+            <a href="privacy.html" class="text-pink-600 hover:underline"
+              >Privacy Policy</a
+            >.</p
+          >
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >5. Data Privacy & Protection</h2
+          >
+          <p class="mb-4"
+            >We collect and process your data as per Indian data protection
+            laws, including the Information Technology (Reasonable Security
+            Practices and Procedures and Sensitive Personal Data or Information)
+            Rules, 2011.</p
+          >
+          <p class="mb-6"
+            >For full details, please refer to our
+            <a href="privacy.html" class="text-pink-600 hover:underline"
+              >Privacy Policy</a
+            >.</p
+          >
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >6. Paid Features (if any)</h2
+          >
+          <p class="mb-2">If you subscribe to a premium plan:</p>
+          <ul class="mb-4 ml-6 list-disc">
+            <li>Prices will be shown before you confirm purchase</li>
+            <li>Payments are handled via Google Play / Apple App Store</li>
+            <li>Cancellations are managed through your app store account</li>
+            <li
+              >We do not provide partial refunds unless required by Indian
+              law</li
+            >
+          </ul>
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >7. Intellectual Property</h2
+          >
+          <p class="mb-6"
+            >All logos, content, features, and design elements in the App are
+            the intellectual property of Cyclebae or its licensors. You may not
+            copy, modify, distribute, or reverse-engineer any part of the App
+            without written permission.</p
+          >
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >8. Changes to Terms</h2
+          >
+          <p class="mb-2"
+            >We may update these Terms to reflect legal, technical, or service
+            changes. If we do:</p
+          >
+          <ul class="mb-4 ml-6 list-disc">
+            <li>We will notify you via the App or email</li>
+            <li>Continued use of the App means you accept the updated Terms</li>
+          </ul>
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">9. Termination</h2>
+          <p class="mb-2">We may suspend or terminate your access if:</p>
+          <ul class="mb-4 ml-6 list-disc">
+            <li>You violate these Terms</li>
+            <li>You request account deletion</li>
+            <li
+              >Required by law or due to unforeseen technical or security
+              issues</li
+            >
+          </ul>
+          <p class="mb-6"
+            >You may also stop using the App at any time and request deletion of
+            your account and data.</p
+          >
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >10. Limitation of Liability</h2
+          >
+          <p class="mb-2"
+            >To the extent permitted by law, we are not liable for:</p
+          >
+          <ul class="mb-4 ml-6 list-disc">
+            <li>Losses caused by reliance on the App</li>
+            <li>Service interruptions or data loss</li>
+            <li>Indirect, incidental, or consequential damages</li>
+          </ul>
+          <p class="mb-6"
+            >Our total liability is limited to the amount you paid for the App,
+            if any, in the last 6 months.</p
+          >
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >11. Governing Law & Dispute Resolution</h2
+          >
+          <p class="mb-6"
+            >These Terms are governed by the laws of India, and any disputes
+            shall be subject to the exclusive jurisdiction of the courts of
+            Cochin, Kerala, India.</p
+          >
+
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"
+            >12. Contact Information</h2
+          >
+          <p class="mb-2"
+            >Grievance Officer (as required by Rule 5(9) of IT Rules, 2011):</p
+          >
+          <div class="mb-4 ml-6">
+            <p><strong>Name:</strong> Arun Velekkat</p>
+            <p><strong>Email:</strong> support@workoi.io</p>
+            <p
+              ><strong>Address:</strong> Valamkotil Towers, Kalamassery,
+              Ernakulam, Kerala, India, 682021</p
+            >
+            <p><strong>Response Time:</strong> Within 30 days</p>
+          </div>
+
+          <p class="mt-8 text-center font-medium"
+            >By continuing to use Cyclebae, you acknowledge that you have read,
+            understood, and agreed to these Terms & Conditions.</p
+          >
         </div>
+      </div>
+
+      <!-- Floating decorative elements -->
+      <div
+        class="absolute top-1/4 left-10 w-16 h-16 bg-pink-300/50 rounded-full float-anim"
+        style="animation-delay: 0s"
+      ></div>
+      <div
+        class="absolute bottom-1/4 right-10 w-24 h-24 bg-purple-300/50 rounded-full float-anim"
+        style="animation-delay: 2s"
+      ></div>
+      <div
+        class="absolute bottom-1/2 right-1/4 w-8 h-8 bg-yellow-300/50 rounded-full float-anim"
+        style="animation-delay: 1s"
+      ></div>
+      <div
+        class="absolute top-1/2 left-1/4 w-12 h-12 bg-blue-300/50 rounded-full float-anim"
+        style="animation-delay: 3s"
+      ></div>
     </main>
 
     <!-- Footer -->
-    <footer class="mt-12 pb-8">
-        <div class="container mx-auto px-6 text-center text-gray-700">
-            <p>&copy; 2024 CycleBae. All Rights Reserved.</p>
-        </div>
+    <footer class="mt-12 pb-8 relative z-10">
+      <div class="container mx-auto px-6 text-center text-gray-700">
+        <p>&copy; 2025 CycleBae. All Rights Reserved.</p>
+      </div>
     </footer>
+
     <script>
-        lucide.createIcons();
+      lucide.createIcons();
+
+      // Create floating hearts
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.animationDelay = Math.random() * 8 + "s";
+        document.getElementById("hearts-container").appendChild(heart);
+
+        // Remove heart after animation
+        setTimeout(() => {
+          heart.remove();
+        }, 8000);
+      }
+
+      // Create hearts periodically
+      setInterval(createHeart, 3000);
+
+      // Reveal animations on scroll
+      const revealElements = document.querySelectorAll(".reveal");
+      const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        revealElements.forEach((el) => {
+          const elementTop = el.getBoundingClientRect().top;
+          if (elementTop < windowHeight - 100) {
+            el.classList.add("visible");
+          }
+        });
+      };
+
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll(); // Trigger on load
+
+      // Add some interactive particles
+      const particles = document.querySelectorAll(".particle");
+      particles.forEach((particle, index) => {
+        particle.addEventListener("mouseenter", () => {
+          particle.style.transform = "scale(1.5)";
+          particle.style.transition = "transform 0.3s ease";
+        });
+
+        particle.addEventListener("mouseleave", () => {
+          particle.style.transform = "scale(1)";
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
